@@ -1,0 +1,51 @@
+<!DOCTYPE html>  <html> <head>   <title>clock.coffee</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="resources/docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               clock.coffee             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <p>This is added for older browsers.  Read: prior to IE8.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="k">if</span> <span class="o">!</span><span class="nb">String</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">trim</span>
+  <span class="nb">String</span><span class="p">.</span><span class="nv">prototype.trim = </span><span class="o">-&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span> <span class="sr">/^\s+|\s+$/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span> <span class="p">)</span>
+
+<span class="k">class</span> <span class="nx">Clock</span>
+    
+ </pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <p>new Clock();               (sets time to now)
+new Clock( '11:22:33' )    (sets time to 11:22:33 AM)
+new Clock( '11:22:33 PM' ) (sets time to 23:22:33)</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="nv">constructor: </span><span class="nf">() -&gt;</span>
+
+        <span class="k">if</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">lenth</span> <span class="o">==</span> <span class="mi">0</span>
+            <span class="nv">args = </span><span class="p">{}</span>
+        <span class="k">else</span>
+            <span class="nv">args = </span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">shift</span><span class="p">.</span><span class="nx">call</span> <span class="nx">arguments</span>
+
+        <span class="k">if</span> <span class="nx">args</span><span class="p">.</span><span class="nx">date</span> <span class="o">and</span> <span class="o">!</span><span class="p">(</span><span class="nx">args</span><span class="p">.</span><span class="nx">date</span> <span class="k">instanceof</span> <span class="nb">Date</span><span class="p">)</span>
+            <span class="k">throw</span> <span class="s2">&quot;args.date is not an instance of Date&quot;</span>
+        <span class="k">else</span> 
+            <span class="vi">@date = </span><span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+
+        <span class="k">if</span> <span class="nx">args</span><span class="p">.</span><span class="nx">time</span>
+            <span class="p">[</span> <span class="nx">hours</span><span class="p">,</span> <span class="nx">minutes</span><span class="p">,</span> <span class="nx">seconds</span> <span class="p">]</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">time</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+            <span class="nx">@date</span><span class="p">.</span><span class="nx">setHours</span><span class="p">(</span> <span class="nx">hours</span> <span class="p">)</span>
+            <span class="nx">@date</span><span class="p">.</span><span class="nx">setMinutes</span><span class="p">(</span> <span class="nx">minutes</span> <span class="p">)</span>
+            <span class="nx">@date</span><span class="p">.</span><span class="nx">setSeconds</span><span class="p">(</span> <span class="nx">seconds</span> <span class="p">)</span>
+
+        <span class="vi">@epoch   = </span><span class="nx">@date</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span>
+        <span class="vi">@refresh = </span><span class="mi">1000</span>
+ 
+        <span class="nx">@tock</span><span class="p">()</span></pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <p>Simple helper function for padding numbers with a leading zero.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="nv">pad: </span><span class="nf">(i) -&gt;</span>
+        <span class="p">(</span><span class="k">if</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="k">then</span> <span class="s2">&quot;0&quot;</span>  <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="nx">i</span>
+
+    <span class="nv">tick: </span><span class="o">-&gt;</span>
+        <span class="vi">@date = </span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span> <span class="nx">@epoch</span> <span class="p">)</span>
+
+    <span class="nv">tock: </span><span class="nf">()-&gt;</span>
+        <span class="nv">t = </span><span class="err">@</span>
+        <span class="nx">setInterval</span><span class="p">(</span>
+            <span class="p">(</span> <span class="o">-&gt;</span>
+                <span class="nx">t</span><span class="p">.</span><span class="nx">epoch</span> <span class="o">+=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">refresh</span>
+                <span class="nx">t</span><span class="p">.</span><span class="nx">tick</span><span class="p">()</span>
+            <span class="p">),</span> <span class="nx">@refresh</span> 
+        <span class="p">)</span>
+
+    <span class="nv">getTime: </span><span class="o">-&gt;</span>
+        <span class="p">[</span>
+            <span class="nx">@pad</span><span class="p">(</span> <span class="nx">@date</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span> <span class="p">),</span>
+            <span class="nx">@pad</span><span class="p">(</span> <span class="nx">@date</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()</span> <span class="p">),</span>
+            <span class="nx">@pad</span><span class="p">(</span> <span class="nx">@date</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">()</span> <span class="p">)</span>
+        <span class="p">].</span><span class="nx">join</span><span class="p">(</span> <span class="s1">&#39;:&#39;</span> <span class="p">)</span>
+
+</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 
