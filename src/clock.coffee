@@ -1,3 +1,4 @@
+# Support CommonJS and the browser
 root = exports ? this
 
 # This is added for older browsers.  Read: prior to IE8.
@@ -9,9 +10,18 @@ class root.Clock
 
     #### Constructor
 
-    # new Clock();                          (sets time to now)
-    # new Clock( { time: '11:22:33' } )     (sets time to 11:22:33 AM)
-    # new Clock( { time: '11:22:33 PM' } )  (sets time to 23:22:33)
+    # ```
+    # new Clock();
+    # ```
+    # sets time to now
+
+    # ```
+    # new Clock( { time: '11:22:33' } )```
+    # sets time to 11:22:33 AM
+
+    # ```
+    # new Clock( { time: '11:22:33 PM' } )```
+    # sets time to 23:22:33
     constructor: () ->
 
         if arguments.length is 0

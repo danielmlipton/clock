@@ -1,5 +1,6 @@
 Docco	      = require 'docco'
 CoffeScript   = require 'coffee-script'
+Jade          = require 'jade'
 {spawn, exec} = require 'child_process'
 fs	      	  = require 'fs'
 path	      = require 'path'
@@ -10,6 +11,7 @@ option '-w', '--watch', 'continually build the docco library'
 task 'build', 'build the docco library', (options) ->
   coffee = spawn 'node', ['./node_modules/coffee-script/bin/coffee','-c' + (if options.watch then 'w' else ''), '-o', 'lib', 'src']
   coffee.stdout.on 'data', (data) -> console.log data.toString().trim()
+#  jade = spawn 'jade'. [ ]
 #  coffee.stderr.on 'data', (data) -> console.log data.toString().trim()
 
 task 'doc', 'rebuild the Docco documentation', ->
