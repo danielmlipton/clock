@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script type="text/javascript" src="../lib/clock.js"></script>
+    <script type="text/javascript">
+      function windClock () {
+       var clock = new Clock();
+       var face = document.getElementById( 'face' );
+       face.innerHTML = clock.getTime();
+       setInterval(
+        function () { face.innerHTML = clock.getTime() }, 1000
+       );
+      }
+    </script>
+  </head>
+  <body onLoad="windClock()">
+    <div id="face"></div>
+  </body>
+</html>

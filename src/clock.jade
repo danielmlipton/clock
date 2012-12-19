@@ -1,15 +1,15 @@
 doctype 5
 html(lang="en")
 	head
-	script(type='text/javascript' src='lib/clock.js')
-	script(type='text/javascript')
-		function windClock () {
-			var clock = new Clock();
-			var face = document.getElementById( 'face' );
-			face.innerHTML = clock.getTime();
-			setInterval(
-				function () { face.innerHTML = clock.getTime() }, 1000
-			);
-		}
-	body (onLoad='windClock()')
-	#face
+		script(type='text/javascript',src='../lib/clock.js')
+		script(type='text/javascript')
+			function windClock () {
+				var clock = new Clock();
+				var face = document.getElementById( 'face' );
+				face.innerHTML = clock.getTime();
+				setInterval(
+					function () { face.innerHTML = clock.getTime() }, 1000
+				);
+			}
+	body(onLoad='windClock()')
+		#face
