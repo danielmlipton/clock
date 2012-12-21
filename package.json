@@ -10,19 +10,16 @@
     "main": "./lib/clock.js",
     "repository": {
         "type": "git",
-        "url": "git@github.com:danielmlipton/clock.git"
+        "url":  "git@github.com:danielmlipton/clock.git"
     },
     "devDependencies": {
-        "qunit": "0.5.x",
-        "docco": "0.4.x",
+        "qunit":         "0.5.x",
+        "docco":         "0.4.x",
         "coffee-script": "1.4.x",
-        "jade": "0.27.x"
+        "jade":          "0.27.x",
+        "phantomjs":     "0.2.x"
     },
     "analyze": false,
-    "bundledDependencies": [
-        "union",
-        "ecstatic"
-    ],
     "license": "MIT",
     "engines": {
         "node": ">=0.6"
