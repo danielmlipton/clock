@@ -1,6 +1,7 @@
 Docco	        = require 'docco'
 CoffeScript   = require 'coffee-script'
 Jade          = require 'jade'
+QUnit         = require 'qunit'
 {spawn, exec} = require 'child_process'
 fs	      	  = require 'fs'
 path	        = require 'path'

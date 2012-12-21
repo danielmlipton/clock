@@ -1,0 +1,30 @@
+{
+    "name": "clock",
+    "preferGlobal": "false",
+    "version": "0.1.0",
+    "author": "Daniel M. Lipton <daniel@mlipton.com>",
+    "description": "A Clock object for JavaScript built using CoffeeScript.",
+    "scripts": {
+        "test": "qunit -c lib/clock.js -t test/test.js"
+    },
+    "main": "./lib/clock.js",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:danielmlipton/clock.git"
+    },
+    "devDependencies": {
+        "qunit": "0.5.x",
+        "docco": "0.4.x",
+        "coffee-script": "1.4.x",
+        "jade": "0.27.x"
+    },
+    "analyze": false,
+    "bundledDependencies": [
+        "union",
+        "ecstatic"
+    ],
+    "license": "MIT",
+    "engines": {
+        "node": ">=0.6"
+    }
+}

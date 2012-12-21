@@ -1,13 +1,12 @@
-
-module(
+QUnit.module(
 	"starting a clock at the current time", {
 		setup: function () {
-			window._date  = new Date();
-			window._clock = new Clock();
+			_date  = new Date();
+			_clock = new Clock();
 		},
 		teardown: function () {
-			delete window._date;
-			delete window._clock;
+			delete _date;
+			delete _clock;
 		}
 	}
 );
@@ -37,16 +36,16 @@ asyncTest( "clock one second later", function() {
 
 });
 
-module(
+QUnit.module(
 	"starting a clock at 13:02:03", {
 		setup: function () {
-			window._clock = new Clock({
+			_clock = new Clock({
 				time: '13:02:03',
 				refresh: 100,
 			});
 		},
 		teardown: function () {
-			delete window._clock;
+			delete _clock;
 		}
 	}
 );
@@ -74,15 +73,15 @@ asyncTest( "clock one second later", function() {
 
 });
 
-module(
+QUnit.module(
 	"starting a clock at 23:59:59", {
 		setup: function () {
-			window._clock = new Clock({
+			_clock = new Clock({
 				time: '23:59:59',
 			});
 		},
 		teardown: function () {
-			delete window._clock;
+			delete _clock;
 		}
 	}
 );
@@ -105,15 +104,15 @@ asyncTest( "clock one second later", function() {
 
 });
 
-module(
+QUnit.module(
 	"starting a clock at 11:59:59 PM", {
 		setup: function () {
-			window._clock = new Clock({
+			_clock = new Clock({
 				time: '11:59:59 PM',
 			});
 		},
 		teardown: function () {
-			delete window._clock;
+			delete _clock;
 		}
 	}
 );
@@ -136,7 +135,7 @@ asyncTest( "clock one second later", function() {
 
 });
 
-module( "fail" );
+QUnit.module( "fail" );
 
 test( "passing a bad argument to the constructor", function () {
 	expect( 1 );
