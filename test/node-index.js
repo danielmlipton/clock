@@ -1,13 +1,15 @@
+// Executing node test/node-index.js is not working.
+// This file isn't used in this package anywhere.  Fix it or remove it.
 var qunit = require('qunit');
 
 qunit.run({
 	code: {
 
-	// Include the source code
-	path: './lib/clock.js',
+		// Include the source code
+		path: './lib/clock.js',
 
-	// What global var should it introduce for your tests?
-	namespace: 'clock'
+		// What global var should it introduce for your tests?
+		namespace: 'clock'
 
     },
 
