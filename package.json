@@ -17,7 +17,8 @@
         "docco":         "0.4.x",
         "coffee-script": "1.4.x",
         "jade":          "0.27.x",
-        "phantomjs":     "0.2.x"
+        "phantomjs":     "0.2.x",
+        "cucumber":      "latest"
     },
     "analyze": false,
     "license": "MIT",
