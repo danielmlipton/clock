@@ -76,13 +76,12 @@ task 'doc', 'rebuild the clock documentation', ->
 task 'test', 'run all tests', ->
   log spawn 'qunit', [ '-c', 'lib/clock.js', '-t', 'test/test.js' ]
   log spawn 'phantomjs', [ 'test/runner.js', 'test/index.html' ]
-  log spawn 'cucumber.js', [ 
-    'test/features/browser.feature',
-    '--require',
-    'test/features/step_definitions/clockStepDefinitions.js'
-  ]
-  log spawn 'cucumber.js', [ 
-    'test/features/basic.feature',
-    '--require',
-    'test/features/step_definitions/clockStepDefinitions.js'
-  ]
+  exec( "find . -name 'test/features/*.feature'", (error, stdout, stderr) ->
+    throw error if error
+    for file in stdout.toString().trim().split( '\n' )
+      log spawn 'cucumber.js', [
+        file,
+        '--require',
+        'test/features/step_definitions/clockStepDefinitions.js'
+      ]
+  )
