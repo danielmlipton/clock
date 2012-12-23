@@ -5,7 +5,7 @@ var myStepDefinitionsWrapper = function () {
 	// overwrite default World constructor
 	this.World = require("../support/world.js").World;
 
-    var now = function () { return (new Date()).getTime() };
+    var now = function () { return (new Date()).getTime(); };
 
 	this.Given(
 		/^that I require "([^"]*)"$/,
@@ -39,16 +39,10 @@ var myStepDefinitionsWrapper = function () {
 
   			var epoch = now();
 
-  			if (epoch <= this.ClockObject.epoch + 50) {
+  			if (epoch <= this.ClockObject.epoch + 100) {
   				callback();
   			} else {
-  				callback.fail(
-  					new Error(
-  						'Expected the date object epoch (' + epoch +
-  						') to be less than or equal to the ClockObject epoch (' +
-  						this.ClockObject.epoch + ') + 50'
-  					)
-  				);
+  				callback.fail( new Error( 'Expected the date object epoch (' + epoch + ') to be less than or equal to the ClockObject epoch (' + this.ClockObject.epoch + ') + 50' ) );
   			}
 		}
 	);
@@ -61,12 +55,7 @@ var myStepDefinitionsWrapper = function () {
   			if (hhmmss === arg1) {
   				callback();
   			} else {
-  				callback.fail(
-  					new Error(
-  						'Expected the time to be (' + hhmmss +
-  						') to be equal to (' + arg1 + ')'
-  					)
-  				);
+  				callback.fail( new Error( 'Expected the time to be (' + hhmmss + ') to be equal to (' + arg1 + ')' ) );
   			}
 		}
 	);
@@ -75,7 +64,7 @@ var myStepDefinitionsWrapper = function () {
 		/^I wait "([^"]*)" seconds?$/,
 		function( arg1, callback ) {
 
-			setTimeout( function () { callback() }, arg1 * 1000 );
+			setTimeout( function () { callback(); }, arg1 * 1010 );
 		}
 	);
 
@@ -93,16 +82,12 @@ var myStepDefinitionsWrapper = function () {
 
 			var browser = this.browser;
 			var errors = browser.text( '#qunit-testresult .failed' );
-			if (parseInt( errors ) === 0) {
+			if (parseInt( errors, 10 ) === 0) {
 				callback();
 			} else if (browser.error) {
-    			callback.fail( 
-    				new Error( 'A browser error occured.' + browser.errors )
-				)
+    			callback.fail( new Error( 'A browser error occured.' + browser.errors ) );
 			} else {
-				callback.fail(
-					new Error( errors + ' occurred.' )
-				)
+				callback.fail( new Error( errors + ' occurred.' ) );
 			}
 		}
 	);
