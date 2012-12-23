@@ -5,7 +5,7 @@
     "author": "Daniel M. Lipton <daniel@mlipton.com>",
     "description": "A Clock object for JavaScript built using CoffeeScript.",
     "scripts": {
-        "test": "qunit -c lib/clock.js -t test/test.js"
+        "test": "cake test"
     },
     "main": "./lib/clock.js",
     "repository": {
@@ -18,7 +18,9 @@
         "coffee-script": "1.4.x",
         "jade":          "0.27.x",
         "phantomjs":     "0.2.x",
-        "cucumber":      "latest"
+        "cucumber":      "latest",
+        "coffeelint":    "0.5.x",
+        "jsonlint":      "1.5.x"
     },
     "analyze": false,
     "license": "MIT",
