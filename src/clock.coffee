@@ -30,13 +30,13 @@ class root.Clock
       args = Array.prototype.shift.call arguments
 
     if typeof args isnt 'object'
-      throw 'args is not an object'
+      throw new Error 'args is not an object'
 
     if args.date and args.time
-      throw 'Do not set args.date and args.time'
+      throw new Error 'Do not set args.date and args.time'
 
     if args.date and !(args.date instanceof Date)
-      throw 'args.date is not an instance of Date'
+      throw new Error 'args.date is not an instance of Date'
     else
       @date = new Date()
 
@@ -57,7 +57,7 @@ class root.Clock
         @date.setMinutes RegExp.$2
         @date.setSeconds RegExp. $3
       else
-        throw 'args.time is not a valid time'
+        throw new Error 'args.time is not a valid time'
 
     @epoch = @date.getTime()
 
