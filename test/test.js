@@ -20,8 +20,8 @@ test( "start clock now", function() {
 	equal( 1000, _clock.refresh, "_clock.refresh defaults to 1000" );
 	ok( _clock.date instanceof Date, "_clock.date is an instance of Date" );
 
-	// Note that clock.epoch could be off by a millisecond.
-	ok( _date.getTime() <= _clock.epoch + 50, 'Time in seconds milliseconds' );
+	// Note that clock.epoch could be off by some number of millisecond.
+	ok( _date.getTime() <= _clock.epoch + 100, 'Time in seconds milliseconds' );
 
 });
 
@@ -30,9 +30,9 @@ asyncTest( "clock one second later", function() {
   expect( 1 );
  
   setTimeout(function() {
-    ok( _date.getTime() <= _clock.epoch + 1050, "Time in milliseconds is one second-ish later" );
+    ok( _date.getTime() <= _clock.epoch + 1100, "Time in milliseconds is one second-ish later" );
     start();
-  }, 1000.5);
+  }, 1010);
 
 });
 
@@ -41,7 +41,7 @@ QUnit.module(
 		setup: function () {
 			_clock = new Clock({
 				time: '13:02:03',
-				refresh: 100,
+				refresh: 100
 			});
 		},
 		teardown: function () {
@@ -69,7 +69,7 @@ asyncTest( "clock one second later", function() {
   setTimeout(function() {
     equal( _clock.getTime(), "13:02:04", "Time one second later" );
     start();
-  }, 1000);
+  }, 1010);
 
 });
 
@@ -77,7 +77,7 @@ QUnit.module(
 	"starting a clock at 23:59:59", {
 		setup: function () {
 			_clock = new Clock({
-				time: '23:59:59',
+				time: '23:59:59'
 			});
 		},
 		teardown: function () {
@@ -100,7 +100,7 @@ asyncTest( "clock one second later", function() {
   setTimeout(function() {
     equal( _clock.getTime(), "00:00:00", "At midnight, military time" );
     start();
-  }, 1000);
+  }, 1010);
 
 });
 
@@ -108,7 +108,7 @@ QUnit.module(
 	"starting a clock at 11:59:59 PM", {
 		setup: function () {
 			_clock = new Clock({
-				time: '11:59:59 PM',
+				time: '11:59:59 PM'
 			});
 		},
 		teardown: function () {
@@ -131,7 +131,7 @@ asyncTest( "clock one second later", function() {
   setTimeout(function() {
     equal( _clock.getTime(), "00:00:00", "At midnight, meridiem time" );
     start();
-  }, 1000);
+  }, 1010);
 
 });
 
@@ -145,7 +145,7 @@ test( "passing a bad argument to the constructor", function () {
 	} catch( e ) {
 		errorString = e;
 	}
-	equal( errorString, "args is not an object", "correct error caught" );
+	equal( errorString, "args is not an object", "error not caught" );
 });
 
 test( "passing a bad time: 19:00:00 PM", function () {
@@ -158,7 +158,7 @@ test( "passing a bad time: 19:00:00 PM", function () {
 	} catch( e ) {
 		errorString = e;
 	}
-	equal( errorString, "args.time is not a valid time", "correct error caught" );
+	equal( errorString, "args.time is not a valid time", "error not caught" );
 });
 
 test( "passing a bad time: 00:00:00 PM", function () {
@@ -171,7 +171,7 @@ test( "passing a bad time: 00:00:00 PM", function () {
 	} catch( e ) {
 		errorString = e;
 	}
-	equal( errorString, "args.time is not a valid time", "correct error caught" );
+	equal( errorString, "args.time is not a valid time", "error not caught" );
 });
 
 test( "passing a bad time: 24:00:00", function () {
@@ -184,5 +184,5 @@ test( "passing a bad time: 24:00:00", function () {
 	} catch( e ) {
 		errorString = e;
 	}
-	equal( errorString, "args.time is not a valid time", "correct error caught" );
+	equal( errorString, "args.time is not a valid time", "error not caught" );
 });
