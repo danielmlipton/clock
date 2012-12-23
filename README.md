@@ -3,14 +3,14 @@ clock
 
 The built in JavaScript Date Object works as follows:
 
-```
+```javascript
 var d = new Date();
 console.log( d );
 ```
 
 > Date {Tue Dec 18 2012 23:38:40 GMT-0500 (EST)}
 
-```
+```javascript
 setTimeout( function () { console.log( d ) }, 1000 )
 ```
 
@@ -20,14 +20,14 @@ While this behavior makes sense, I intuitively thought the second ```console.log
 
 This class implements that functionality for time only - at least for now.
 
-```
+```javascript
 var c = new Clock();
 console.log( c.getTime );
 ```
 
 > 23:38:40
 
-```
+```javascript
 setTimeout( function () { console.log( c.getTime() ) }, 1000 )
 ```
 
