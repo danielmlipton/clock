@@ -71,15 +71,13 @@ var myStepDefinitionsWrapper = function () {
 	this.Given(
 		/^that I visit "([^"]*)"$/,
 		function( url, callback ) {
-
-			this.visit( url, callback );
+			this.visit( 'file://' + __dirname + url, callback );
 		}
 	);
 
 	this.Then(
 		/^the page should have no errors$/,
 		function( callback ) {
-
 			var browser = this.browser;
 			var errors = browser.text( '#qunit-testresult .failed' );
 			if (parseInt( errors, 10 ) === 0) {
