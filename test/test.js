@@ -145,7 +145,7 @@ test( "passing a bad argument to the constructor", function () {
 	} catch( e ) {
 		errorString = e;
 	}
-	equal( errorString, "args is not an object", "error not caught" );
+	equal( errorString, "Error: args is not an object", "error not caught" );
 });
 
 test( "passing a bad time: 19:00:00 PM", function () {
@@ -158,7 +158,7 @@ test( "passing a bad time: 19:00:00 PM", function () {
 	} catch( e ) {
 		errorString = e;
 	}
-	equal( errorString, "args.time is not a valid time", "error not caught" );
+	equal( errorString, "Error: args.time is not a valid time", "error not caught" );
 });
 
 test( "passing a bad time: 00:00:00 PM", function () {
@@ -171,7 +171,7 @@ test( "passing a bad time: 00:00:00 PM", function () {
 	} catch( e ) {
 		errorString = e;
 	}
-	equal( errorString, "args.time is not a valid time", "error not caught" );
+	equal( errorString, "Error: args.time is not a valid time", "error not caught" );
 });
 
 test( "passing a bad time: 24:00:00", function () {
@@ -184,5 +184,5 @@ test( "passing a bad time: 24:00:00", function () {
 	} catch( e ) {
 		errorString = e;
 	}
-	equal( errorString, "args.time is not a valid time", "error not caught" );
+	equal( errorString, "Error: args.time is not a valid time", "error not caught" );
 });
