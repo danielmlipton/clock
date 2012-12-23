@@ -1,4 +1,4 @@
-# features/basic.feature
+# test/features/basic.feature
 
 Feature: Basic Clock Feature
   As a JavaScript developer
