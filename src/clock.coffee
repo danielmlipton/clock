@@ -24,6 +24,10 @@ class root.Clock
   # sets time to 23:22:33
   constructor: () ->
 
+    # http://stackoverflow.com/questions/383402/is-javascript-s-new-keyword-considered-harmful
+    if !(@ instanceof arguments.callee)
+      throw new Error 'Constructor called as a function'
+
     if arguments.length is 0
       args = {}
     else
@@ -59,29 +63,35 @@ class root.Clock
       else
         throw new Error 'args.time is not a valid time'
 
+    @start = (new Date).getTime()
     @epoch = @date.getTime()
+    @time = 0
 
-    if args.refresh and typeof args.refresh is 'number'
-      @refresh = args.refresh
+    if args.delay and typeof args.delay is 'number'
+      @delay = args.delay
     else
-      @refresh = 1000
+      @delay = 1000
 
-    @tock()
+    @tick()
 
   # Simple helper function for padding numbers with a leading zero.
   pad: (i) ->
     (if i < 10 then "0"  else "") + i
 
-  tick: ->
-    @date = new Date( @epoch )
+  stop: () ->
+    clearTimeout( @id )
 
-  tock: ()->
-    t = @
-    setInterval(
+  tick: ()->
+    diff = (new Date).getTime() - @start - @time
+    that = @
+    that.id = setTimeout(
       ( ->
-        t.epoch += t.refresh
-        t.tick()
-      ), @refresh
+        that.epoch += that.delay
+        that.time  += that.delay
+        that.date   = new Date( that.epoch )
+        that.tick()
+      ),
+      @delay - diff
     )
 
   getTime: ->
