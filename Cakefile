@@ -65,9 +65,7 @@ task 'watch', 'watch source files and build changes', ->
 task 'doc', 'rebuild the (incomplete) clock documentation', ->
   exec([
     'node_modules/docco/bin/docco -o docs src/*.coffee'
-    # Is it wrong that this makes me giggle?
-    'sed "s/docco.css/..\\/resources\\/docco.css/" < docs/clock.html > docs/index.html'
-    'rm -r docs/clock.html'
+    'node_modules/docco/bin/docco -o docs test/drift/*.js'
   ].join(' && '), (err) ->
     throw err if err
   )
