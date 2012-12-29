@@ -17,7 +17,7 @@ test( "start clock now", function() {
 
 	equal( typeof _clock.epoch, "number", "_clock.epoch is number" );
 	equal( 0, _clock.epoch % 1, "_clock.epoch is an integer" );
-	equal( 1000, _clock.refresh, "_clock.refresh defaults to 1000" );
+	equal( 1000, _clock.delay, "_clock.delay defaults to 1000" );
 	ok( _clock.date instanceof Date, "_clock.date is an instance of Date" );
 
 	// Note that clock.epoch could be off by some number of millisecond.
@@ -41,7 +41,7 @@ QUnit.module(
 		setup: function () {
 			_clock = new Clock({
 				time: '13:02:03',
-				refresh: 100
+				delay: 100
 			});
 		},
 		teardown: function () {
@@ -56,7 +56,7 @@ test( "start clock at 13:02:03", function() {
 
 	equal( "number", typeof _clock.epoch, "_clock.epoch is number" );
 	equal( _clock.epoch % 1, 0, "_clock.epoch is an integer" );
-	equal( _clock.refresh, 100, "_clock.refresh defaults to 1000" );
+	equal( _clock.delay, 100, "_clock.delay defaults to 1000" );
 	ok( _clock.date instanceof Date, "_clock.date is an instance of Date" );
 	equal( _clock.getTime(), "13:02:03", 'Time' );
 
