@@ -2,24 +2,35 @@ drift
 =====
 
 *Noun*
-```A continuous slow movement from one place to another.```
+
+```
+A continuous slow movement from one place to another.
+```
 
 *Synonym*
-```pedantry```
+
+```
+pedantry
+```
+
 
 This is the story of what caused me to not commit any code for six days.
 
-At the time of the last commit (64236abec7b3d8cab7b89e82fb880707ffa6d163), 
+At the time of the last [commit](@64236abec7b3d8cab7b89e82fb880707ffa6d163),
 tests were failing intermitently and I had only the vaguest of clues why. I 
-knew that ```[setTimeout()](https://developer.mozilla.org/en-US/docs/DOM/window.setTimeout)``` and ```[setInterval(https://developer.mozilla.org/en-US/docs/DOM/window.setInterval)]()``` were imprecise.  I also knew that all
-browser based events executed in a single thread, thanks to [John Resig](http://ejohn.org/blog/how-javascript-timers-work/). To allow for this imprecision, tests were written to accept the time in milliseconds to be off by up to 100 milliseconds.  Even then, tests were failing from time to time.
+knew that [setTimeout()](https://developer.mozilla.org/en-US/docs/DOM/window.setTimeout) and [setInterval](https://developer.mozilla.org/en-US/docs/DOM/window.setInterval)]()
+were imprecise.  I also knew that allbrowser based events executed in a single
+thread, thanks to [John Resig](http://ejohn.org/blog/how-javascript-timers-work/).
+To allow for this imprecision, tests were written to accept the time in
+milliseconds to be off by up to 100 milliseconds.  Even then, tests were failing from time to time.
 
 I began to wonder: was clock.js drifting away from the real time over a long
 period of time?
 
 To answer that, I cobbled together a cusory test script that proved that a 
 static delay (see staticDelayTest.js) did, in theory, slow down about one 
-second out of every ten.  That was unacceptable so I did some [research](http://www.sitepoint.com/creating-accurate-timers-in-javascript/), wrote a
+second out of every ten.  That was unacceptable so I did some
+[research](http://www.sitepoint.com/creating-accurate-timers-in-javascript/), wrote a
 test case (see dynamicDelay.js) and came to the conclusion that there was room
 for improvement.
 
