@@ -20,7 +20,7 @@ setTimeout( function () { console.log( d ) }, 1000 )
 
 While this behavior makes sense, I intuitively thought the second ```console.log``` should read one second later.
 
-This class implements that functionality for time only - at least for now.
+This class implements that functionality for time only - [at least for now](http://stackoverflow.com/questions/6075231/how-to-extend-the-javascript-date-object).
 
 ```javascript
 var c = new Clock();
