@@ -31,21 +31,21 @@ task 'lint', 'run jslint, coffeelint, and jsonlint', ->
   invoke 'jsonlint'
 
 task 'jslint', 'run jsl on lib/clock.js', ->
-  exec( "find . -name '*.js'", (error, stdout, stderr) ->
+  exec( "find . -name node_modules -prune -o -name '*.js'", (error, stdout, stderr) ->
     throw error if error
     for file in stdout.toString().trim().split( '\n' )
       log spawn 'jsl', [ '-conf', 'jsl.conf', '-process', file ]
   )
 
 task 'coffeelint', 'run coffeelint on src/clock.coffee', ->
-  exec( "find . -name '*.coffee'", (error, stdout, stderr) ->
+  exec( "find . -name node_modules -prune -o -name '*.coffee'", (error, stdout, stderr) ->
     throw error if error
     for file in stdout.toString().trim().split( '\n' )
       log spawn 'coffeelint', [ '-f', 'coffeelint.json', file ]
   )
 
 task 'jsonlint', 'run jsonlint on json files', ->
-  exec( "find . -name '*.json'", (error, stdout, stderr) ->
+  exec( "find . -name node_modules -prune -o -name '*.json'", (error, stdout, stderr) ->
     throw error if error
     for file in stdout.toString().trim().split( '\n' )
       log spawn 'jsonlint', [ file ]
@@ -62,7 +62,7 @@ task 'watch', 'watch source files and build changes', ->
                 console.log "Finished building #{file}"
 
 # Doc Tasks
-task 'doc', 'rebuild the clock documentation', ->
+task 'doc', 'rebuild the (incomplete) clock documentation', ->
   exec([
     'node_modules/docco/bin/docco -o docs src/*.coffee'
     # Is it wrong that this makes me giggle?
